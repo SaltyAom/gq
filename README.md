@@ -49,21 +49,6 @@ Y'll made GraphQL too complex and heavy.
 
 I just want to fetch GraphQL query here.
 
-## Middleware
-You can implement custom plugin for transforming data, caching, logging, etc.
-
-- middlewares
-	- Executes before fetch
-	- Will receive (`operationName`, `variables`)
-	- If any callback return truthy value, the value will be used as result and skip the fetch
-	- Good for caching
-
-- afterwares
-	- Executes after fetch
-	- Will receive (`data`, `operationName`, `variables`)
-	- Returning new data will cause data transformation for next afterware
-	- Good for logging, data-transformations.
-
 ### Example
 ```typescript
 import gql, { client } from '@saltyaom/gq'
