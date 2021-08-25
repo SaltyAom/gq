@@ -1,3 +1,6 @@
+/**
+ * Append HTTP Header that will sent with request
+ */
 type Header = Omit<RequestInit, 'body'>
 
 export interface GraphQLError {
@@ -8,6 +11,16 @@ export interface GraphQLError {
 	}
 }
 
+/**
+ * GraphQL Client
+ *
+ * You can config client option here
+ *
+ * @example
+ * import gql, { config } from '@saltyaom/gq'
+ *
+ * client.config('http://api.opener.studio/graphql')
+ **/
 export const client: {
 	_e: string
 	_h: Header
@@ -27,7 +40,7 @@ const getOperationName = (query: string) => {
 		query.match(/(query|mutation|subscription) (.*?) {/) ||
 		([false, '', ''] as const)
 
-	return operationName.split('(')[0]
+	return operationName.split('(')[0] || '_'
 }
 
 interface Options<V extends Object = Object> {
@@ -77,12 +90,10 @@ interface Options<V extends Object = Object> {
  **/
 const gql = async <T extends Object = Object, V extends Object = Object>(
 	query: string,
-	{ variables = {} as V, config = {} }: Options<V>
+	{ variables = {} as V, config = {} }: Options<V> = {}
 ): Promise<T | GraphQLError[] | Error> => {
 	let get = (
-		typeof window == 'undefined'
-			? await import('isomorphic-unfetch')
-			: fetch
+		typeof fetch == 'undefined' ? await import('isomorphic-unfetch') : fetch
 	) as typeof fetch
 
 	let { _e: endpoint, _h: headers } = client
