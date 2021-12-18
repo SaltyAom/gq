@@ -3,6 +3,9 @@ require('esbuild')
 		entryPoints: ['./src/index.ts'],
 		outdir: './build/esm',
 		format: 'esm',
+		outExtension: {
+			'.js': '.mjs'
+		},
 		bundle: true,
 		minify: true,
 		sourcemap: 'external',
