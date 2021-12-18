@@ -1,0 +1,60 @@
+lockfileVersion: 5.3
+
+specifiers:
+  esbuild: ^0.12.18
+  isomorphic-unfetch: ^3.1.0
+  typescript: ^4.3.5
+
+dependencies:
+  isomorphic-unfetch: 3.1.0
+
+devDependencies:
+  esbuild: 0.12.29
+  typescript: 4.5.4
+
+packages:
+
+  /esbuild/0.12.29:
+    resolution: {integrity: sha512-w/XuoBCSwepyiZtIRsKsetiLDUVGPVw1E/R3VTFSecIy8UR7Cq3SOtwKHJMFoVqqVG36aGkzh4e8BvpO1Fdc7g==}
+    hasBin: true
+    requiresBuild: true
+    dev: true
+
+  /isomorphic-unfetch/3.1.0:
+    resolution: {integrity: sha512-geDJjpoZ8N0kWexiwkX8F9NkTsXhetLPVbZFQ+JTW239QNOwvB0gniuR1Wc6f0AMTn7/mFGyXvHTifrCp/GH8Q==}
+    dependencies:
+      node-fetch: 2.6.6
+      unfetch: 4.2.0
+    dev: false
+
+  /node-fetch/2.6.6:
+    resolution: {integrity: sha512-Z8/6vRlTUChSdIgMa51jxQ4lrw/Jy5SOW10ObaA47/RElsAN2c5Pn8bTgFGWn/ibwzXTE8qwr1Yzx28vsecXEA==}
+    engines: {node: 4.x || >=6.0.0}
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: false
+
+  /tr46/0.0.3:
+    resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
+    dev: false
+
+  /typescript/4.5.4:
+    resolution: {integrity: sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /unfetch/4.2.0:
+    resolution: {integrity: sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==}
+    dev: false
+
+  /webidl-conversions/3.0.1:
+    resolution: {integrity: sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=}
+    dev: false
+
+  /whatwg-url/5.0.0:
+    resolution: {integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=}
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
+    dev: false
