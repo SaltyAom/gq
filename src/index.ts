@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch'
+
 /**
  * Append HTTP Header that will sent with request
  */
@@ -92,13 +94,9 @@ const gql = async <T extends Object = Object, V extends Object = Object>(
 	query: string,
 	{ variables = {} as V, config = {} }: Options<V> = {}
 ): Promise<T | GraphQLError[] | Error> => {
-	let get = (
-		typeof fetch == 'undefined' ? await import('isomorphic-unfetch') : fetch
-	) as typeof fetch
-
 	let { _e: endpoint, _h: headers } = client
 
-	let { data, errors = null } = await get(endpoint, {
+	let { data, errors = null } = await fetch(endpoint, {
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
