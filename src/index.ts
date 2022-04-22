@@ -58,6 +58,14 @@ interface Options<V extends Object = Object> {
 	 * @default {}
 	 */
 	config?: Header
+	/**
+	 * Custom Endpoint
+	 */
+	endpoint?: string
+	/**
+	 * Custom Method
+	 */
+	method?: string
 }
 
 /**
@@ -92,12 +100,17 @@ interface Options<V extends Object = Object> {
  **/
 const gql = async <T extends Object = Object, V extends Object = Object>(
 	query: string,
-	{ variables = {} as V, config = {} }: Options<V> = {}
+	{
+		variables = {} as V,
+		config = {},
+		endpoint: overrideEndpoint,
+		method = 'POST'
+	}: Options<V> = {}
 ): Promise<T | GraphQLError[] | Error> => {
 	let { _e: endpoint, _h: headers } = client
 
-	let { data, errors = null } = await fetch(endpoint, {
-		method: 'POST',
+	let { data, errors = null } = await fetch(overrideEndpoint || endpoint, {
+		method,
 		headers: {
 			'content-type': 'application/json',
 			mode: 'cors',

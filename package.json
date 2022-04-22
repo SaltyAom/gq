@@ -1,7 +1,7 @@
 {
   "name": "@saltyaom/gq",
   "description": "Graphql client at bare minimum",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "./build/index.js",
   "module": "./build/esm/index.mjs",
   "exports": {
