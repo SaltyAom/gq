@@ -37,14 +37,40 @@ export const client: {
 	}
 }
 
-const getOperationName = (query: string) => {
-	let [_, __, operationName] =
-		query.match(/(query|mutation|subscription) (.*?) {/) ||
-		([false, '', ''] as const)
+const getOperationIndex = (query: string) => {
+	let index = query.indexOf('query')
+	if (index > -1) return index + 6
 
-	return operationName.split('(')[0] || '_'
+	index = query.indexOf('mutation')
+	if (index > -1) return index + 9
+
+	index = query.indexOf('subscription')
+	if (index > -1) return index + 13
+
+	return -1
 }
 
+const getOperationDelimiter = (operationName: string) => {
+	const bracketDelimiter = operationName.indexOf('(')
+	const spaceDelimiter = operationName.indexOf(' ')
+
+	// Only circumstance index is equal is that both is -1
+	if (bracketDelimiter === spaceDelimiter) return -1
+
+	return spaceDelimiter > bracketDelimiter ? bracketDelimiter : spaceDelimiter
+}
+
+export const getOperationName = (query: string) => {
+	let opIndex = getOperationIndex(query)
+	if (opIndex === -1) return '_'
+
+	let operationName = query.substring(opIndex)
+
+	let delimiterIndex = getOperationDelimiter(operationName)
+	if (delimiterIndex === -1) return '_'
+
+	return operationName.substring(0, delimiterIndex) || '_'
+}
 interface Options<V extends Object = Object> {
 	/**
 	 * GraphQL variables

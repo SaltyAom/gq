@@ -1,5 +1,3 @@
-console.log(typeof fetch == "undefined")
-
 import gql, { client } from '@saltyaom/gq'
 
 client.config('https://api.opener.studio/graphql')
